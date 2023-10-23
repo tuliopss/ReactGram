@@ -16,7 +16,7 @@ const userCreateValidation = () => {
       .isString()
       .withMessage("A senha é obrigatória.")
       .isLength({ min: 5 })
-      .withMessage("O nome precisa de no mínimo 5 caracteres"),
+      .withMessage("A senha precisa de no mínimo 5 caracteres"),
     body("confirmpassword")
       .isString()
       .withMessage("Confirme sua senha.")
@@ -40,4 +40,22 @@ const loginValidation = () => {
   ];
 };
 
-module.exports = { userCreateValidation, loginValidation };
+const userUpdateValidation = () => {
+  return [
+    body("name")
+      .optional()
+      .isLength(2)
+      .withMessage("O nome precisa ter no mínimo 2 caracteres"),
+
+    body("password")
+      .optional()
+      .isLength({ min: 5 })
+      .withMessage("A senha precisa de no mínimo 5 caracteres"),
+  ];
+};
+
+module.exports = {
+  userCreateValidation,
+  loginValidation,
+  userUpdateValidation,
+};
