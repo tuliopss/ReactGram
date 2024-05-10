@@ -6,9 +6,7 @@ const dbPassword = process.env.DB_PASS;
 
 const conn = async () => {
   try {
-    const dbConn = await mongoose.connect(
-      `mongodb+srv://${dbUser}:${dbPassword}@cluster0.ptc4v0a.mongodb.net/`
-    );
+    const dbConn = await mongoose.connect("mongodb://0.0.0.0:27017/reactgram");
 
     console.log("Banco conectado");
     return dbConn;
