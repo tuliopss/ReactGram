@@ -8,8 +8,8 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 
 //Components
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
