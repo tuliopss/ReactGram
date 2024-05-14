@@ -8,6 +8,11 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (user) {
+      if (user.errors) {
+        setAuth(false);
+        setLoading(false);
+        return;
+      }
       setAuth(true);
     } else {
       setAuth(false);
