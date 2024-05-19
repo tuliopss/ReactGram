@@ -18,6 +18,17 @@ export const userProfile = createAsyncThunk(
     return data;
   }
 );
+
+export const getUserById = createAsyncThunk(
+  "user/userById",
+  async (id, thunkAPI) => {
+    const token = thunkAPI.getState().auth.user.token;
+    const data = await userService.getUserById(id, token);
+
+    return data;
+  }
+);
+
 export const updateProfile = createAsyncThunk(
   "user/update",
   async (user, thunkAPI) => {
@@ -38,6 +49,7 @@ export const userSlice = createSlice({
   reducers: {
     resetMessage: (state) => {
       state.message = null;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -68,6 +80,16 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         state.user = {};
+      })
+      .addCase(getUserById.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.error = null;
+        state.user = action.payload;
       });
   },
 });
