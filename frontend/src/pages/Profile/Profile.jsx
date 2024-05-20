@@ -195,7 +195,7 @@ const Profile = () => {
                 {id === userAuth._id ? (
                   <div className={styles.actions}>
                     {" "}
-                    <Link className={styles.btn} to={`photos/${photo._id}`}>
+                    <Link className={styles.btn} to={`/photos/${photo._id}`}>
                       <BsFillEyeFill />
                     </Link>
                     <BsPencilFill onClick={() => handleEdit(photo)} />
