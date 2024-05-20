@@ -46,7 +46,13 @@
 .actions svg {
   cursor: pointer;
 }
+.edit_photo {
+  margin-bottom: 1em;
+}
 
+.hide {
+  display: none;
+}
 .edit_photo img {
   width: 100%;
   margin-bottom: 1em;
