@@ -90,7 +90,7 @@ const Profile = () => {
     };
 
     dispatch(updatePhoto(photoData));
-    resetComponentMessage();
+    resetMessage();
   };
 
   const handleEdit = (photo) => {
@@ -205,7 +205,7 @@ const Profile = () => {
                     <BsXLg onClick={() => handleDelete(photo._id)} />
                   </div>
                 ) : (
-                  <Link className={styles.btn} to={`photos/${photo._id}`}>
+                  <Link className={styles.btn} to={`/photos/${photo._id}`}>
                     Ver
                   </Link>
                 )}

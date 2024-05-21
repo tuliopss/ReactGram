@@ -7,16 +7,16 @@
   padding: 0.1em 1em;
 }
 
-#search-form {
+#search_form {
   position: relative;
   width: 20%;
 }
-#search-form svg {
+#search_form svg {
   position: absolute;
   top: 10px;
   left: 9px;
 }
-#search-form input {
+#search_form input {
   padding-left: 2.5em;
   border: none;
   border-radius: 5px;
@@ -24,20 +24,20 @@
   margin: 0;
 }
 
-#nav-links {
+#nav_links {
   display: flex;
   align-items: center;
 }
 
-#nav-links li {
+#nav_links li {
   margin-right: 1em;
   list-style: none;
 }
 
-#nav-links span {
+#nav_links span {
   cursor: pointer;
 }
 
-#nav-links svg {
+#nav_links svg {
   font-size: 1.5em;
 }

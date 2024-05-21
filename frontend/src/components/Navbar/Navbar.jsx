@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "./Navbar.css";
+import React, { useEffect, useState } from "react";
+import styles from "./Navbar.module.css";
 
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import {
@@ -15,6 +15,7 @@ import { logout, reset } from "../../slices/authSlice";
 const Navbar = () => {
   const { auth } = useAuth();
   const { user } = useSelector((state) => state.auth);
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,14 +25,27 @@ const Navbar = () => {
 
     navigate("/login");
   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (query) {
+      return navigate("/search?q=" + query);
+    }
+  };
   return (
-    <nav id='nav'>
+    <nav id={styles.nav}>
       <Link to='/'>ReactGram</Link>
-      <form id='search-form'>
+
+      <form id={styles.search_form} onSubmit={handleSearch}>
         <BsSearch />
-        <input type='text' placeholder='Pesquisar' />
+        <input
+          type='text'
+          placeholder='Pesquisar'
+          onChange={(e) => setQuery(e.target.value)}
+        />
       </form>
-      <ul id='nav-links'>
+
+      <ul id={styles.nav_links}>
         {auth ? (
           <>
             {" "}
