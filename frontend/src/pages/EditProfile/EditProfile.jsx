@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./EditProfile.module.css";
 import { uploads } from "../../utils/api";
-import {
-  resetMessage,
-  updateProfile,
-  userProfile,
-} from "../../slices/userSlice";
+import { updateProfile, userProfile } from "../../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../../components/Message/Message";
+import { useResetComponentMessage } from "../../hooks/useResetComponentMessage";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const { user, error, loading, message } = useSelector((state) => state.user);
+  const resetMessage = useResetComponentMessage(dispatch);
+
   const [userState, setUserState] = useState({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -67,9 +66,7 @@ const EditProfile = () => {
 
     // await dispatch(updateProfile(userFormData));
 
-    setTimeout(() => {
-      dispatch(resetMessage());
-    }, 2000);
+    resetMessage();
   };
 
   return (

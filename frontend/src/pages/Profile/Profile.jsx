@@ -13,6 +13,7 @@ import {
   resetMessage,
   updatePhoto,
 } from "../../slices/photoSlice";
+import { useResetComponentMessage } from "../../hooks/useResetComponentMessage";
 const Profile = () => {
   const { id } = useParams();
 
@@ -27,6 +28,8 @@ const Profile = () => {
     error: errorPhoto,
   } = useSelector((state) => state.photo);
 
+  const resetMessage = useResetComponentMessage(dispatch);
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
 
@@ -37,11 +40,11 @@ const Profile = () => {
   const newPhotoForm = useRef();
   const editPhotoForm = useRef();
 
-  const resetComponentMessage = () => {
-    setTimeout(() => {
-      dispatch(resetMessage());
-    }, 2000);
-  };
+  // const resetComponentMessage = () => {
+  //   setTimeout(() => {
+  //     dispatch(resetMessage());
+  //   }, 2000);
+  // };
 
   const toggleForms = () => {
     newPhotoForm.current.classList.toggle(styles.hide);
@@ -70,12 +73,12 @@ const Profile = () => {
     dispatch(publishPhoto(formData));
 
     setTitle("");
-    resetComponentMessage();
+    resetMessage();
   };
 
   const handleDelete = (id) => {
     dispatch(deletePhoto(id));
-    resetComponentMessage();
+    resetMessage();
   };
 
   const handleUpdate = (e) => {
