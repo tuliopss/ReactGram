@@ -3,6 +3,7 @@ const router = express.Router();
 const Photo = require("../models/Photo");
 const User = require("../models/User");
 const mongoose = require("mongoose");
+const crypto = require("crypto");
 
 //Insert photo with user relacio
 const insertPhoto = async (req, res) => {
@@ -181,13 +182,17 @@ const commentPhoto = async (req, res) => {
     userName: user.name,
     userImage: user.profileImage,
     userId: user._id,
+    idComment: crypto.randomUUID(),
   };
 
   photo.comments.push(userComment);
 
   await photo.save();
 
-  res.status(200).json({ photoId: photo._id, userName: user.name, comment });
+  res.status(200).json({
+    comment: userComment,
+    message: "Comentário adicionado com sucesso!",
+  });
 };
 
 const searchPhotos = async (req, res) => {
