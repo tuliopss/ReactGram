@@ -40,6 +40,17 @@ export const getUserPhotos = createAsyncThunk(
   }
 );
 
+export const getPhotos = createAsyncThunk(
+  "photo/getAll",
+  async (_, thunkAPI) => {
+    // the underline says to redux that the first argument its unnecessary
+    const token = thunkAPI.getState().auth.user.token;
+
+    const data = await photoService.getPhotos(token);
+
+    return data;
+  }
+);
 export const getPhotoById = createAsyncThunk(
   "photo/getPhoto",
   async (id, thunkAPI) => {
@@ -249,6 +260,16 @@ export const photoSlice = createSlice({
         state.photo.comments.push(action.payload.comment);
 
         state.message = action.payload.message;
+      })
+      .addCase(getPhotos.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.error = null;
+        state.photos = action.payload;
+      })
+      .addCase(getPhotos.pending, (state) => {
+        state.loading = true;
+        state.error = false;
       });
   },
 });
